@@ -1,0 +1,118 @@
+﻿@model EmpleadoViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<br />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Empleado.activo" value="1"/>
+
+    <div class="container table-info">
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold">
+                <h2>
+                    Creando Empleado
+                </h2>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.CedulaEmpleado"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Empleado.CedulaEmpleado" />
+                <span asp-validation-for="Empleado.CedulaEmpleado" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Contraseña"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="password" class="form-control" asp-for="Empleado.Contraseña" />
+                <span asp-validation-for="Empleado.Contraseña" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Nombre"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Empleado.Nombre" />
+                <span asp-validation-for="Empleado.Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Apellido1"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Empleado.Apellido1" />
+                <span asp-validation-for="Empleado.Apellido1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Apellido2"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Empleado.Apellido2" />
+                <span asp-validation-for="Empleado.Apellido2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Telefono"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Empleado.Telefono" />
+                <span asp-validation-for="Empleado.Telefono" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Correo"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Empleado.Correo" />
+                <span asp-validation-for="Empleado.Correo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.Nacimiento"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="date" class="form-control" asp-for="Empleado.Nacimiento" />
+                <span asp-validation-for="Empleado.Nacimiento" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Empleado.IdRol"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                @Html.DropDownListFor(s => s.Empleado.IdRol, Model.Rol, "- Seleccione un Rol", new { @class = "form-control" })
+                <span asp-validation-for="Empleado.IdRol" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold text-center">
+                <button asp-controller="Empleados" asp-action="Index" asp-route-id="0" class="btn btn-danger">Cancelar</button>
+
+                <button type="submit" class="btn btn-success text-white">
+                    <span>Crear</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

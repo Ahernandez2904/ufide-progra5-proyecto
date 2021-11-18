@@ -1,0 +1,90 @@
+﻿@model Cliente
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<br />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="container table-info">
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold">
+                <h2>
+                    Creando Cliente
+                </h2>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="CedulaCliente"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="CedulaCliente" />
+                <span asp-validation-for="CedulaCliente" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Nombre"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Nombre" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Apellido1"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Apellido1" />
+                <span asp-validation-for="Apellido1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Apellido2"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Apellido2" />
+                <span asp-validation-for="Apellido2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Telefono"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Telefono" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Correo"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Correo" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold text-center">
+                <button asp-controller="Clientes" asp-action="Index" asp-route-id="0" class="btn btn-danger">Cancelar</button>
+
+                <button type="submit" class="btn btn-success text-white">
+                    <span>Crear</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

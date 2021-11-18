@@ -1,0 +1,103 @@
+﻿@model List<Cliente>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<br />
+<div class="container table-info">
+    <div class="row">
+        <div class="col-8 bg-primary fw-bold">
+            <h2>Clientes</h2>
+        </div>
+
+        <div class="col-4 bg-primary fw-bold text-right">
+            <a asp-controller="Clientes" asp-action="Create"  class="btn btn-primary text-white">Crear</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 bg-primary fw-bold text-center">
+            Cedula
+        </div>
+        <div class="col-3 bg-primary fw-bold text-center">
+            Nombre Completo
+        </div>
+        <div class="col-2 bg-primary fw-bold text-center">
+            Telefono
+        </div>
+        <div class="col-2 bg-primary fw-bold text-center">
+            Correo
+        </div>
+        <div class="col-3 bg-primary fw-bold text-center">
+            Acción
+        </div>
+
+    </div>
+    @foreach (Cliente cliente in Model)
+    {
+        <div class="row  text-center bg-dark" id="@cliente.CedulaCliente">
+            <div class="col-2">
+                @cliente.CedulaCliente
+            </div>
+
+            <div class="col-3">
+                @cliente.Nombre @cliente.Apellido1 @cliente.Apellido2
+            </div>
+
+            <div class="col-2">
+                @cliente.Telefono
+            </div>
+
+
+            <div class="col-2">
+                @cliente.Correo
+            </div>
+
+            <div class="col-3">
+                <a id="editar" asp-controller="Clientes" asp-action="Upsert" asp-route-CedulaCliente="@cliente.CedulaCliente" class="btn btn-sm btn-success text-white">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a id="borrar" onclick="Borrar('@cliente.CedulaCliente');" class="btn btn-sm btn-danger text-white">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<script>
+    function Borrar(id) {
+        swal
+            ({
+
+                title: "Borrar Cliente",
+                text: "¿Está seguro que desea borrar el registro?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then
+            (
+                (borrarlo) => {
+                    if (borrarlo) {
+                        $.ajax
+                            ({
+                                type: "DELETE",
+                                url: "/clientes/borrar/?CedulaCliente=" + id,
+                                success: function (data) {
+                                    if (data.success) {
+                                        toastr.success("El registro ha sido borrado permanentemente.");
+                                        $("#" + id).remove();
+                                    }
+                                    else {
+                                        toastr.error(data.message);
+                                    }
+                                }
+                            });
+                    }
+                }
+            );
+    }
+</script>
