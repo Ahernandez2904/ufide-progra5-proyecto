@@ -1,4 +1,4 @@
-﻿@model List<Cliente>
+﻿@model List<Platillo>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -9,56 +9,49 @@
 <div class="container table-info">
     <div class="row">
         <div class="col-8 bg-primary fw-bold">
-            <h2>Clientes</h2>
+            <h2>Platillos</h2>
         </div>
-
         <div class="col-4 bg-primary fw-bold text-right">
-            <a asp-controller="Clientes" asp-action="Create"  class="btn btn-primary text-white">Crear</a>
+            <a asp-controller="Platillos" asp-action="Create"  class="btn btn-primary text-white">Crear</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-2 bg-primary fw-bold text-center">
-            Cédula
-        </div>
-        <div class="col-3 bg-primary fw-bold text-center">
-            Nombre Completo
+        <div class="col-1 bg-primary fw-bold text-center">
+            Id
         </div>
         <div class="col-2 bg-primary fw-bold text-center">
-            Teléfono
+            Nombre
         </div>
+        <div class="col-4 bg-primary fw-bold text-center">
+            Descripción
+        </div>
+        <!--<div class="col-2 bg-primary fw-bold text-center">Costo</div>
+        <div class="col-1 bg-primary fw-bold text-center">Activo</div>-->
+        <div class="col-3 bg-primary fw-bold text-center">Costo</div>
         <div class="col-2 bg-primary fw-bold text-center">
-            Correo
-        </div>
-        <div class="col-3 bg-primary fw-bold text-center">
             Acción
         </div>
-
+        
     </div>
-    @foreach (Cliente cliente in Model)
+    @foreach (Platillo p in Model)
     {
-        <div class="row  text-center bg-dark" id="@cliente.CedulaCliente">
+        <div class="row  text-center bg-dark" id="@p.Id">
+            <div class="col-1">
+                @p.Id
+            </div>
             <div class="col-2">
-                @cliente.CedulaCliente
+                @p.Nombre
             </div>
-
-            <div class="col-3">
-                @cliente.Nombre @cliente.Apellido1 @cliente.Apellido2
+            <div class="col-4">
+                @p.Descripcion
             </div>
-
+            <!--<div class="col-2">@p.Costo</div><div class="col-1">@p.activo</div>-->
+            <div class="col-3">@p.Costo</div>
             <div class="col-2">
-                @cliente.Telefono
-            </div>
-
-
-            <div class="col-2">
-                @cliente.Correo
-            </div>
-
-            <div class="col-3">
-                <a id="editar" asp-controller="Clientes" asp-action="Upsert" asp-route-CedulaCliente="@cliente.CedulaCliente" class="btn btn-sm btn-success text-white">
+                <a id="editar" asp-controller="Platillos" asp-action="Upsert" asp-route-_id="@p.Id" class="btn btn-sm btn-success text-white">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a id="borrar" onclick="Borrar('@cliente.CedulaCliente');" class="btn btn-sm btn-danger text-white">
+                <a id="borrar" onclick="Borrar('@p.Id');" class="btn btn-sm btn-danger text-white">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </div>
@@ -72,8 +65,7 @@
     function Borrar(id) {
         swal
             ({
-
-                title: "Borrar Cliente",
+                title: "Borrar Platillo",
                 text: "¿Está seguro que desea borrar el registro?",
                 icon: "warning",
                 buttons: true,
@@ -85,7 +77,7 @@
                         $.ajax
                             ({
                                 type: "DELETE",
-                                url: "/clientes/borrar/?CedulaCliente=" + id,
+                                url: "/platillos/borrar/?_id=" + id,
                                 success: function (data) {
                                     if (data.success) {
                                         toastr.success("El registro ha sido borrado permanentemente.");

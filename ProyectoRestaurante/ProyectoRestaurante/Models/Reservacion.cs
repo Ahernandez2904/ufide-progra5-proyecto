@@ -13,6 +13,7 @@ namespace ProyectoRestaurante.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Cantidad de asientos")]
         public int CantidadAsientos { get; set; }
 
         [Required]

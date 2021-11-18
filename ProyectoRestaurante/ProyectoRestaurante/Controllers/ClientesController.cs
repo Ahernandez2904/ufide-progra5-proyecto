@@ -53,9 +53,13 @@ namespace ProyectoRestaurante.Controllers
             cliente.Correo = c.Correo;
 
             Database.Clientes.Add(cliente);
-
-            Database.SaveChanges();
-
+            try
+            {
+                Database.SaveChanges();
+            } catch(Exception e)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return RedirectToAction(nameof(Index));
         }
 

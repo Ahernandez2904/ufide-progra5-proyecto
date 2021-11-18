@@ -16,5 +16,6 @@ namespace ProyectoRestaurante.Models
         public Empleado Empleado { get; set; }
 
         public IEnumerable<SelectListItem> Rol { get; set; }
+
     }
 }

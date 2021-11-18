@@ -1,0 +1,73 @@
+﻿@model Platillo
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<br />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="container table-info">
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold">
+                <h2>
+                    Editando Platillo
+                </h2>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Nombre"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Nombre" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Descripcion"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Descripcion" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Costo"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Costo" />
+                <span asp-validation-for="Costo" class="text-danger"></span>
+            </div>
+        </div>
+        <!--<div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="activo"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="checkbox" class="form-control" asp-for="activo" />
+                <span asp-validation-for="activo" class="text-danger"></span>
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold text-center">
+                <button asp-controller="Platillo" asp-action="Index" asp-route-id="0" class="btn btn-danger">Cancelar</button>
+
+                <button type="submit" class="btn btn-success text-white">
+                    <span>Actualizar</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

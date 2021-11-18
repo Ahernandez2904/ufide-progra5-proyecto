@@ -23,7 +23,6 @@ namespace ProyectoRestaurante.Controllers
             List<Rol> roles = Database.Roles.ToList();
             empleados.ForEach(c => c.Rol = roles.FirstOrDefault(s => s.Id == c.IdRol));
             return View(empleados);
-
         }
 
         
@@ -38,7 +37,7 @@ namespace ProyectoRestaurante.Controllers
                 {
                     Empleado = empleado,
                     Rol = Database.Roles.ToList().ConvertAll
-                        (s => new SelectListItem(s.Nombre, s.Nombre.ToString(), s.Id == empleado.IdRol))
+                        (s => new SelectListItem(s.Nombre.ToString(), s.Id.ToString(), s.Id == empleado.IdRol))
                 };
 
             return View(model);
@@ -127,7 +126,6 @@ namespace ProyectoRestaurante.Controllers
             empleado.Nacimiento = e.Nacimiento;
             empleado.activo = e.activo;
             empleado.Rol = Database.Roles.FirstOrDefault(s => s.Id == e.IdRol);
-
 
             Database.SaveChanges();
 

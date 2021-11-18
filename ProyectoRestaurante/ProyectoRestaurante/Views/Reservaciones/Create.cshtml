@@ -1,0 +1,65 @@
+﻿@model ReservacionViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<br />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="container table-info">
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold">
+                <h2>
+                    Creando Reservación
+                </h2>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Reservacion.CantidadAsientos"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="text" class="form-control" asp-for="Reservacion.CantidadAsientos" />
+                <span asp-validation-for="Reservacion.CantidadAsientos" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Reservacion.Fecha"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                <input type="date" class="form-control" asp-for="Reservacion.Fecha" />
+                <span asp-validation-for="Reservacion.Fecha" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-4 bg-primary fw-bold text-center">
+                <label asp-for="Reservacion.CedulaCliente"></label>
+            </div>
+            <div class="col-8 bg-primary fw-bold text-center">
+                @Html.DropDownListFor(s => s.Reservacion.CedulaCliente, Model.Cliente, "- Seleccione un cliente", new { @class = "form-control" })
+                <span asp-validation-for="Reservacion.CedulaCliente" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 bg-primary fw-bold text-center">
+                <button asp-controller="Reservaciones" asp-action="Index" asp-route-id="0" class="btn btn-danger">Cancelar</button>
+                <button type="submit" class="btn btn-success text-white">
+                    <span>Crear</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
