@@ -22,7 +22,7 @@ namespace ProyectoRestaurante.Models
         public DateTime Fecha { get; set; }
 
         [Required]
-        [Display(Name = "Cliente")]
+        [Display(Name = "Cédula")]
         public string CedulaCliente { get; set; }
 
         [ForeignKey(nameof(CedulaCliente))]

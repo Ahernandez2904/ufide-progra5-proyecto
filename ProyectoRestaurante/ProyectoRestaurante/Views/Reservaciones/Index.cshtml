@@ -45,7 +45,7 @@
                 @r.Fecha
             </div>
             <div class="col-3">
-                @r.CedulaCliente
+                @r.Cliente.CedulaCliente
             </div>
             <div class="col-2">
                 <a id="editar" asp-controller="Reservaciones" asp-action="Upsert" asp-route-_id="@r.Id" class="btn btn-sm btn-success text-white">
