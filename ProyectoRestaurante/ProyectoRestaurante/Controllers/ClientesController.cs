@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProyectoRestaurante.Models;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace ProyectoRestaurante.Controllers
 
         ApplicationDbContext Database;
 
+        [Authorize]
         public IActionResult Index()
         {
             List<Cliente> clientes = Database.Clientes.ToList();
             return View(clientes);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -30,6 +33,7 @@ namespace ProyectoRestaurante.Controllers
             return View(cliente);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(Cliente c)
         {
@@ -63,7 +67,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Upsert(string? CedulaCliente)
         {
@@ -78,6 +82,7 @@ namespace ProyectoRestaurante.Controllers
             return View(cliente);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Upsert(Cliente c)
         {
@@ -105,6 +110,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         [HttpDelete]
         public IActionResult Borrar(string CedulaCliente)
         {

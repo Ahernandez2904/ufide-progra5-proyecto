@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProyectoRestaurante.Models;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,14 @@ namespace ProyectoRestaurante.Controllers
 
         ApplicationDbContext Database;
 
+        [Authorize]
         public IActionResult Index()
         {
             List<Platillo> platillos = Database.Platillos.ToList();
             return View(platillos);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -29,6 +32,7 @@ namespace ProyectoRestaurante.Controllers
             return View(p);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(Platillo c)
         {
@@ -57,7 +61,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Upsert(int? _id)
         {
@@ -72,6 +76,7 @@ namespace ProyectoRestaurante.Controllers
             return View(p);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Upsert(Platillo c)
         {
@@ -98,6 +103,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         [HttpDelete]
         public IActionResult Borrar(int _id)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoRestaurante.Models;
 using System;
@@ -17,6 +18,7 @@ namespace ProyectoRestaurante.Controllers
 
         ApplicationDbContext Database;
 
+        [Authorize]
         public IActionResult Index()
         {
             List<Reservacion> r = Database.Reservaciones.ToList();
@@ -25,6 +27,7 @@ namespace ProyectoRestaurante.Controllers
             return View(r);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
@@ -44,6 +47,7 @@ namespace ProyectoRestaurante.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create(ReservacionViewModel c)
         {
@@ -78,7 +82,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Upsert(int? _id)
         {
@@ -105,6 +109,7 @@ namespace ProyectoRestaurante.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Upsert(ReservacionViewModel c)
         {
@@ -132,6 +137,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         [HttpDelete]
         public IActionResult Borrar(int _id)
         {

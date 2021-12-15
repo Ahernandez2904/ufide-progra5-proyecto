@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoRestaurante.Models;
 using System;
@@ -17,6 +18,7 @@ namespace ProyectoRestaurante.Controllers
 
         ApplicationDbContext Database;
 
+        [Authorize]
         public IActionResult Index()
         {
             List<Empleado> empleados = Database.Empleados.ToList();
@@ -25,12 +27,11 @@ namespace ProyectoRestaurante.Controllers
             return View(empleados);
         }
 
-        
+        [Authorize]
         [HttpGet]
         public IActionResult Create()
         {
             Empleado empleado = new Empleado();
-
             
             EmpleadoViewModel model =
                 new EmpleadoViewModel
@@ -43,7 +44,7 @@ namespace ProyectoRestaurante.Controllers
             return View(model);
         }
 
-        
+        [Authorize]
         [HttpPost]
         public IActionResult Create(EmpleadoViewModel c)
         {
@@ -79,11 +80,10 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [Authorize]
         [HttpGet]
         public IActionResult Upsert(string? CedulaEmpleado)
         {
-
             Empleado empleado = new Empleado();
 
             empleado = Database.Empleados.FirstOrDefault(s => s.CedulaEmpleado == CedulaEmpleado);
@@ -99,6 +99,7 @@ namespace ProyectoRestaurante.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Upsert(EmpleadoViewModel c)
         {
@@ -132,6 +133,7 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         [HttpDelete]
         public IActionResult Borrar(string CedulaEmpleado)
         {
