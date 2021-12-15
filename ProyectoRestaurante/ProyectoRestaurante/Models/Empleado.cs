@@ -14,25 +14,32 @@ namespace ProyectoRestaurante.Models
         [StringLength(20, ErrorMessage = "El campo cédula no debe ser mayor a 60 caracteres")]
         public string CedulaEmpleado { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
         [StringLength(60, ErrorMessage = "El campo contraseña no debe ser mayor a 60 caracteres")]
         public string Contraseña { get; set; }
 
         [StringLength(60, ErrorMessage = "El campo nombre no debe ser mayor a 60 caracteres")]
+        [Required]
         public string Nombre { get; set; }
 
         [StringLength(60, ErrorMessage = "El campo primer apellido no debe ser mayor a 60 caracteres")]
         [Display(Name = "Primer Apellido")]
+        [Required]
         public string Apellido1 { get; set; }
 
         [StringLength(60, ErrorMessage = "El campo segundo apellido no debe ser mayor a 60 caracteres")]
         [Display(Name = "Segundo Apellido")]
+        [Required]
         public string Apellido2 { get; set; }
 
         [StringLength(8, ErrorMessage = "El campo teléfono no debe ser mayor a 8 caracteres")]
+        [Required]
         public string Telefono { get; set; }
 
         [StringLength(60, ErrorMessage = "El campo correo no debe ser mayor a 60 caracteres")]
         [EmailAddress]
+        [Required]
         public string Correo { get; set; }
 
         [Required]
