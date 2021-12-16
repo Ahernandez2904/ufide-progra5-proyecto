@@ -98,7 +98,24 @@ namespace ProyectoRestaurante.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [Authorize]
+        [HttpDelete]
+        public IActionResult Borrar(int idFactura)
+        {
+            Factura f = Database.Facturas.FirstOrDefault(s => s.IdReservacion == idFactura);
+            if (f == null)
+            {
+                return Json(new { success = false, message = "Facturo no encontrada." });
+            }
+
+            Database.Facturas.Remove(f);
+            Database.SaveChanges();
+
+            return Json(new { success = false, message = "La eliminación de la factura ha sido exitosa." });
+        }
+
     }
 
-    //Para cualquier nueva ruta agreguele [Authorize] al principio
 }
+

@@ -3,44 +3,98 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Factura Items";
 }
 
-<div class="container">
+<br />
 
-    <div class="row">
-        <div class="col-6 text-center"><h2>Factura Items</h2></div>
-        <a asp-controller="Factura_Platillo" asp-action="Upsert" asp-route-id="0" class="btn btn-outline-danger col-6 text-center"><i class="far fa-plus-square"></i> Crear Detalles de Factura</a>
+<div class="container table-info">
+
+    <div style="margin:15px; border:groove;" class="row">
+        <div class="col-6 bg-primary fw-bold">
+            <h2 style="margin:10px">Factura Items</h2>
+        </div>
+
+        <div class="col-6 bg-primary fw-bold text-right">
+            <a asp-controller="Factura_Platillo" asp-action="Upsert" asp-route-id="0" style="margin:15px; font-size:20px" class="btn btn-outline-warning col-6 text-center"><i class="far fa-plus-square"></i> Crear Detalles de Factura</a>
+        </div>
     </div>
+
     <br />
-    <div style="padding: 1%; background-color: #4B69AD; color: white; border: groove; border-radius: 50px; position: relative " class="row d-flex justify-content-around text-wrap d-flex align-items-center">
-        <div class="col-2" align="center"><i class="fas fa-file-medical"></i> ID</div>
-        <div class="col-2" align="center"><i class="fas fa-file-medical"></i> Factura</div>
-        <div class="col-2" align="center"><i class="fas fa-file-medical"></i> Platillo</div>
-        <div class="col-2" align="center"><i class="fas fa-file-medical"></i> Cantidad</div>
+
+
+    <div style="border:groove" class="row">
+        <div class="col-2 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> ID</div>
+        <div class="col-2 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Factura</div>
+        <div class="col-2 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Platillo</div>
+        <div class="col-2 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Cantidad</div>
         <!-- <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Nombre de Platillo</div>-->
-        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Descripción</div>
+        <div class="col-2  bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Descripción</div>
+        <div class="col-2  bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Acción</div>
         <!--<div class="col-3" align="center"><i class="fas fa-file-medical"></i> Costo de Platillo</div>-->
         <!-- <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Cantidad de Asientos</div> -->
         <!--<div class="col-3" align="center"><i class="fas fa-users"></i> Empleado</div>-->
-        <div class="col-2" align="center">
-        </div>
     </div>
 
     @foreach (Factura_Platillo factura_Platillo in Model)
     {
-<div style="padding: 1%; background-color: #EDDB40; color: black; border: groove; border-radius: 50px; position: relative " class="row d-flex justify-content-around text-wrap d-flex align-items-center" id="@factura_Platillo.Id">
-    <div class="col-2" align="center">@factura_Platillo.Id</div>
-    <div class="col-2" align="center">@factura_Platillo.Factura.IdFactura</div>
-    <div class="col-2" align="center">@factura_Platillo.Platillo.Id</div>
-    <div class="col-2" align="center">@factura_Platillo.Cantidad</div>
-    <div class="col-3" align="center">@factura_Platillo.Detalle_Platillo</div>
-    <!-- <div class="col-2" align="center">@factura_Platillo.Platillo.Descripcion</div>-->
-    <!--<div class="col-3" align="center">@factura_Platillo.Platillo.Costo</div>-->
-    <div class="col-2" align="center">
-        <!--<a id="editar" asp-controller="Blogs" asp-action="Upsert" asp-route-id=".ApodoId" class="btn btn-sm btn-success text-white"><i class="fas fa-edit"></i></a>-->
-        <!--<a id="borrar" class="btn btn-sm btn-danger text-white" onclick="Borrar('');"><i class="fas fa-trash-alt"></i></a>-->
-    </div>
-</div>
+        <div class="row  bg-dark fw-bold text-right" id="@factura_Platillo.Id">
+            <div class="col-2" align="center">@factura_Platillo.Id</div>
+            <div class="col-2" align="center">@factura_Platillo.Factura.IdFactura</div>
+            <div class="col-2" align="center">@factura_Platillo.Platillo.Id</div>
+            <div class="col-2" align="center">@factura_Platillo.Cantidad</div>
+            <div class="col-2" align="center">@factura_Platillo.Detalle_Platillo</div>
+            <div class="col-2" align="center">
+                <a id="editar" asp-controller="Factura_Platillo" asp-action="Upsert" asp-route-id="@factura_Platillo.IdFactura" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                <a style="margin:4px 4px" id="borrar" onclick="Borrar('@factura_Platillo.Id');" class="btn btn-sm btn-danger text-white">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </div>
+        </div>
     }
 
 </div>
+
+<br />
+<br />
+<br />
+<br />
+
+<div style=" font-size:25px; align-content:center; margin:15%" class="d-flex justify-content-around text-wrap d-flex align-items-center ">
+    <a href="~/Factura">Volver al Menu de Facturación</a>
+    <a href="~/Reservaciones"> Volver al Menu de Reservaciones</a>
+</div>
+
+<script>
+    function Borrar(id) {
+        swal
+            ({
+
+                title: "¿Borrar Factura del Platillo?",
+                text: "¿Está seguro que desea borrar el registro?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then
+            (
+                (borrarlo) => {
+                    if (borrarlo) {
+                        $.ajax
+                            ({
+                                type: "DELETE",
+                                url: "/factura_platillo/borrar/?Id=" + id,
+                                success: function (data) {
+                                    if (data.success) {
+                                        toastr.success("El registro ha sido borrado permanentemente.");
+                                        $("#" + id).remove();
+                                    }
+                                    else {
+                                        toastr.error(data.message);
+                                    }
+                                }
+                            });
+                    }
+                }
+            );
+    }
+</script>

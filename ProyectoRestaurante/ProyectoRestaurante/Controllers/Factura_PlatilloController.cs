@@ -30,8 +30,6 @@ namespace ProyectoRestaurante.Controllers
 
             factura_Platillos.ForEach(x => x.Factura = facturas.FirstOrDefault(z => z.IdFactura == x.IdFactura));
             factura_Platillos.ForEach(x => x.Platillo = platillos.FirstOrDefault(z => z.Id == x.IdPlatillo));
-           /* factura_Platillos.ForEach(x => x.Platillo = platillos.FirstOrDefault(z => z.Costo == x.Cantidad)); */
-           /* factura_Platillos.ForEach(x => x.Platillo = platillos.FirstOrDefault(z => z.Descripcion == x.Detalle_Platillo)); */
 
 
             return View(factura_Platillos);
@@ -58,8 +56,7 @@ namespace ProyectoRestaurante.Controllers
                 FacturaPlatillo = factura_Platillo,
                 Facturas = Database.Facturas.ToList().ConvertAll(s => new SelectListItem(s.IdFactura.ToString(), s.IdFactura.ToString(), s.IdFactura == factura_Platillo.IdFactura)),
                 Platillos = Database.Platillos.ToList().ConvertAll(s => new SelectListItem(s.Id.ToString(), s.Id.ToString(), s.Id == factura_Platillo.IdPlatillo)),
-               /* Costos = Database.Platillos.ToList().ConvertAll(s => new SelectListItem(s.Costo.ToString(), s.Costo.ToString(), s.Costo == factura_Platillo.Cantidad)),  
-                Detalles = Database.Platillos.ToList().ConvertAll(s => new SelectListItem(s.Descripcion, s.Descripcion, s.Descripcion == factura_Platillo.Detalle_Platillo)) */
+
 
             };
 
@@ -97,9 +94,8 @@ namespace ProyectoRestaurante.Controllers
             factura_Platillo.IdFactura = x.IdFactura;
             factura_Platillo.IdPlatillo = x.IdPlatillo;
            factura_Platillo.Cantidad = x.Cantidad;
-            /*factura_Platillo.Platillo.Nombre = x.Platillo.Nombre;*/
            factura_Platillo.Detalle_Platillo = x.Detalle_Platillo;
-            /*factura_Platillo.Platillo.Costo = x.Platillo.Costo;*/
+
 
             if(x.Id < 1)
             {
@@ -109,7 +105,23 @@ namespace ProyectoRestaurante.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [Authorize]
+        [HttpDelete]
+        public IActionResult Borrar(int id)
+        {
+            Factura_Platillo f = Database.Facturas_Platillo.FirstOrDefault(s => s.Id == id);
+            if(f == null)
+            {
+                return Json(new { success = false, message = "Facturo de platillo no encontrada." });
+            }
+
+            Database.Facturas_Platillo.Remove(f);
+            Database.SaveChanges();
+
+            return Json(new { success = false, message = "La eliminación de la factura ha sido exitosa." });
+        }
+
     }
 
-    //Para cualquier nueva ruta agreguele [Authorize] al principio
 }

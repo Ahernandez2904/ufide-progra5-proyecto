@@ -9,29 +9,29 @@
 
 <br />
 <div class="container table-info">
-    <div class="row">
+    <div class="row" style="margin:15px; border:groove; ">
         <div class="col-8 bg-primary fw-bold">
-            <h2>Empleados</h2>
+            <h2 style="margin:10px; color:lightgoldenrodyellow">Empleados</h2>
         </div>
 
         <div class="col-4 bg-primary fw-bold text-right">
-            <a asp-controller="Empleados" asp-action="Create" class="btn btn-primary text-white">Crear</a>
+            <a asp-controller="Empleados" asp-action="Create" style="margin:15px; font-size:20px"  class="btn btn-outline-warning col-6 text-center">Crear Empleado</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-2 bg-primary fw-bold text-center">
+        <div  style="color:lightgoldenrodyellow; font-size:20px"class="col-2 bg-primary fw-bold text-center">
             Cedula
         </div>
-        <div class="col-3 bg-primary fw-bold text-center">
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-3 bg-primary fw-bold text-center">
             Nombre Completo
         </div>
-        <div class="col-2 bg-primary fw-bold text-center">
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-2 bg-primary fw-bold text-center">
             Correo
         </div>
-        <div class="col-2 bg-primary fw-bold text-center">
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-2 bg-primary fw-bold text-center">
             Rol
         </div>
-        <div class="col-3 bg-primary fw-bold text-center">
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-3 bg-primary fw-bold text-center">
             Acción
         </div>
 
@@ -39,25 +39,25 @@
     @foreach (Empleado empleado in Model)
     {
         <div class="row  text-center bg-dark" id="@empleado.CedulaEmpleado">
-            <div class="col-2">
+            <div style="padding:5px; font-size:18px" class="col-2">
                 @empleado.CedulaEmpleado
             </div>
 
-            <div class="col-3">
+            <div style="padding:5px; font-size:18px" class="col-3">
                 @empleado.Nombre @empleado.Apellido1 @empleado.Apellido2
             </div>
 
-            <div class="col-2">
+            <div style="padding:5px; font-size:18px" class="col-2">
                 @empleado.Correo
             </div>
 
 
-            <div class="col-2">
+            <div style="padding:5px; font-size:18px" class="col-2">
                 @empleado.Rol.Nombre
             </div>
 
-            <div class="col-3">
-                <a id="editar" asp-controller="Empleados" asp-action="Upsert" asp-route-CedulaEmpleado="@empleado.CedulaEmpleado" class="btn btn-sm btn-success text-white">
+            <div style="padding-top:7px; padding-bottom:7px" class="col-3">
+                <a id="editar" asp-controller="Empleados" asp-action="Upsert" asp-route-CedulaEmpleado="@empleado.CedulaEmpleado" class="btn btn-sm btn-primary text-white">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a id="borrar" onclick="Borrar('@empleado.CedulaEmpleado');" class="btn btn-sm btn-danger text-white">

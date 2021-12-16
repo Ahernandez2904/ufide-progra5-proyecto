@@ -8,15 +8,15 @@
 
 <br />
 <div class="container table-info">
-    <div class="row">
+    <div class="row" style="margin:15px; border:groove;">
         <div class="col-8 bg-primary fw-bold">
-            <h2>Platillos</h2>
+            <h2 style="margin: 10px; color: lightgoldenrodyellow">Platillos</h2>
         </div>
         <div class="col-4 bg-primary fw-bold text-right">
-            <a asp-controller="Platillos" asp-action="Create"  class="btn btn-primary text-white">Crear</a>
+            <a asp-controller="Platillos" asp-action="Create"  style="margin:15px; font-size:20px"  class="btn btn-outline-warning col-6 text-center">Crear Platillo</a>
         </div>
     </div>
-    <div class="row">
+    <div style="color:lightgoldenrodyellow; font-size:20px" class="row">
         <div class="col-1 bg-primary fw-bold text-center">
             Id
         </div>
@@ -26,8 +26,7 @@
         <div class="col-4 bg-primary fw-bold text-center">
             Descripción
         </div>
-        <!--<div class="col-2 bg-primary fw-bold text-center">Costo</div>
-        <div class="col-1 bg-primary fw-bold text-center">Activo</div>-->
+
         <div class="col-3 bg-primary fw-bold text-center">Costo</div>
         <div class="col-2 bg-primary fw-bold text-center">
             Acción
@@ -36,7 +35,7 @@
     </div>
     @foreach (Platillo p in Model)
     {
-        <div class="row  text-center bg-dark" id="@p.Id">
+        <div style="padding:5px; font-size:18px" class="row  text-center bg-dark" id="@p.Id">
             <div class="col-1">
                 @p.Id
             </div>
@@ -46,10 +45,9 @@
             <div class="col-4">
                 @p.Descripcion
             </div>
-            <!--<div class="col-2">@p.Costo</div><div class="col-1">@p.activo</div>-->
             <div class="col-3">@p.Costo</div>
-            <div class="col-2">
-                <a id="editar" asp-controller="Platillos" asp-action="Upsert" asp-route-_id="@p.Id" class="btn btn-sm btn-success text-white">
+            <div style="padding-top:7px; padding-bottom:7px" class="col-2">
+                <a id="editar" asp-controller="Platillos" asp-action="Upsert" asp-route-_id="@p.Id" class="btn btn-sm btn-primary text-white">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a id="borrar" onclick="Borrar('@p.Id');" class="btn btn-sm btn-danger text-white">

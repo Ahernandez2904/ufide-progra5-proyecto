@@ -3,7 +3,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-}
+    ViewData["Title"] = "Editando Factura";
+} 
 
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -16,39 +17,39 @@
     }
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-12">
+<div class="container table-info">
+    <div class="row justify-content-center text-center" style="color:lightgoldenrodyellow">
+        <div style="margin:10px; border:groove" class="col-6 bg-primary fw-bold">
             <h2>
                 @if (Model.Factura.IdFactura > 0)
                 {<span>Editando</span> }
                 else
-                { <span>Creando</span>} Autor
+                { <span>Creando</span>} Factura
             </h2>
         </div>
     </div>
 
 
-    <div class="row form-group">
-        <div class="col-4"><label asp-for="Factura.IdReservacion"></label></div>
-        <div class="col-8">
-            @Html.DropDownListFor(s => s.Factura.IdReservacion, Model.Reservaciones, "- Seleccione la reservación", new { @class = "form-control" })
+    <div class="row form-group justify-content-center">
+        <div style="padding-bottom: 15px; padding-top: 20px; color: lightgoldenrodyellow" class="col-md-2 bg-primary fw-bold text-center"><label asp-for="Factura.IdReservacion"></label></div>
+        <div style="padding-bottom: 15px; padding-top: 20px; color: lightgoldenrodyellow" class="col-4 bg-primary fw-bold text-center">
+            @Html.DropDownListFor(s => s.Factura.IdReservacion, Model.Reservaciones, "- Seleccione la reservación...", new { @class = "form-control" })
             <span asp-validation-for="Factura.IdReservacion" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="row form-group">
-        <div class="col-4"><label asp-for="Factura.CedulaEmpleado"></label></div>
-        <div class="col-8">
-            @Html.DropDownListFor(s => s.Factura.CedulaEmpleado, Model.Empleados, "- Seleccione la reservación", new { @class = "form-control" })
+    <div class="row form-group justify-content-center">
+        <div style="padding-bottom: 15px; padding-top: 20px; color: lightgoldenrodyellow" class="col-md-2 bg-primary fw-bold text-center"><label asp-for="Factura.CedulaEmpleado"></label></div>
+        <div style="padding-bottom: 15px; padding-top: 20px; color: lightgoldenrodyellow" class="col-4 bg-primary fw-bold text-center">
+            @Html.DropDownListFor(s => s.Factura.CedulaEmpleado, Model.Empleados, "- Seleccione la cedula del empleado...", new { @class = "form-control" })
             <span asp-validation-for="Factura.CedulaEmpleado" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 text-center">
-            <button asp-controller="Factura" asp-action="Index" class="btn btn-secondary text-white">Cancelar</button>
-            <button type="submit" class="btn btn-primary text-white">
+    <div class="row justify-content-center">
+        <div style="padding-bottom:20px; padding-top:20px" class="col-6 bg-primary fw-bold text-center text-center">
+            <button asp-controller="Factura" asp-action="Index" class="btn btn-danger text-white">Cancelar</button>
+            <button type="submit" class="btn btn-warning text-white">
                 @if (Model.Factura.IdFactura > 0)
                 {<span>Actualizar</span> }
                 else

@@ -3,42 +3,91 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Factura";
 }
 
-<div class="container">
+<div class="container table-info">
 
-    <div class="row">
-        <div class="col-6 text-center"><h2>Facturación</h2></div>
-        <a asp-controller="Factura" asp-action="Upsert" asp-route-id="0" class="btn btn-outline-danger col-6 text-center"><i class="far fa-plus-square"></i> Crear Factura</a>
+    <div class="row" style="margin:15px; border:groove;">
+        <div class="col-8 bg-primary fw-bold">
+            <h2 style="margin:10px">Facturación</h2>
+        </div>
+        <div class="col-4 bg-primary fw-bold text-right">
+            <a asp-controller="Factura" asp-action="Upsert" asp-route-id="0" style="margin:15px; font-size:20px" class="btn btn-outline-warning col-6 text-center"><i class="far fa-plus-square"></i> Crear Factura</a>
+        </div>
+
     </div>
     <br />
-    <div style="padding: 1%; background-color: #4B69AD; color: white; border: groove; border-radius: 50px; position: relative " class="row d-flex justify-content-around text-wrap d-flex align-items-center">
-        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> ID</div>
-        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Reservación</div>
-        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Cedula Empleado</div>
-       <!-- <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Cantidad de Asientos</div> -->
-        <!--<div class="col-3" align="center"><i class="fas fa-users"></i> Empleado</div>-->
-        <div class="col-3" align="center">
+    <div style="border:groove" class="row">
+        <div class="col-3 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> ID</div>
+        <div class="col-3 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Reservación</div>
+        <div class="col-3 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Cedula Empleado</div>
+        <div class="col-3 bg-primary fw-bold text-center" align="center"><i class="fas fa-file-medical"></i> Acción</div>
+        <div class="col-3 bg-primary fw-bold text-center" align="center">
         </div>
     </div>
 
     @foreach (Factura factura in Model)
     {
-<div style="padding: 1%; background-color: #EDDB40; color: black; border: groove; border-radius: 50px; position: relative " class="row d-flex justify-content-around text-wrap d-flex align-items-center" id="@factura.IdFactura">
-    <div class="col-3" align="center">@factura.IdFactura</div>
-    <div class="col-3" align="center">@factura.Reservacion.Id</div>
-    <div class="col-3" align="center">@factura.Empleado.CedulaEmpleado</div>
-    <div class="col-3" align="center">
-        <!--<a id="editar" asp-controller="Blogs" asp-action="Upsert" asp-route-id=".ApodoId" class="btn btn-sm btn-success text-white"><i class="fas fa-edit"></i></a>-->
-        <!--<a id="borrar" class="btn btn-sm btn-danger text-white" onclick="Borrar('');"><i class="fas fa-trash-alt"></i></a>-->
-    </div>
-
-    <div class="col-2"> 
-        <a id="factura" href="~/Factura_Platillo" class="btn btn-lg btn-success text-white">
-            <i class="fas fa-file-invoice-dollar"></i>
-        </a>
-    </div>
-</div>
+        <div class="row  bg-dark fw-bold text-right" id="@factura.IdFactura">
+            <div class="col-3" align="center">@factura.IdFactura</div>
+            <div class="col-3" align="center">@factura.Reservacion.Id</div>
+            <div class="col-3" align="center">@factura.Empleado.CedulaEmpleado</div>
+            <div class="col-3" align="center">
+                <a id="editar" asp-controller="Factura" asp-action="Upsert" asp-route-id="@factura.IdReservacion" class="btn btn-sm btn-primary text-white"><i class="fas fa-edit"></i></a>
+                <a id="borrar" onclick="Borrar('@factura.IdReservacion');" class="btn btn-sm btn-danger text-white">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a style="margin:2px 2px" id="factura" href="~/Factura_Platillo" class="btn btn-sm btn-warning text-white">
+                    <i class="fas fa-file-invoice-dollar"></i> Factura Items
+                </a>
+            </div>
+        </div>
     }
 
+    <br />
+
 </div>
+
+<br />
+<br />
+<br />
+<br />
+
+<div style=" font-size:25px; align-content:center; margin:15%" class="d-flex justify-content-around text-wrap d-flex align-items-center ">
+    <a href="~/Reservaciones">Volver al Menu de Reservacion</a>
+</div>
+
+<script>
+    function Borrar(id) {
+        swal
+            ({
+
+                title: "¿Borrar la Factura?",
+                text: "¿Está seguro que desea borrar el registro?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then
+            (
+                (borrarlo) => {
+                    if (borrarlo) {
+                        $.ajax
+                            ({
+                                type: "DELETE",
+                                url: "/factura/borrar/?IdFactura=" + id,
+                                success: function (data) {
+                                    if (data.success) {
+                                        toastr.success("El registro ha sido borrado permanentemente.");
+                                        $("#" + id).remove();
+                                    }
+                                    else {
+                                        toastr.error(data.message);
+                                    }
+                                }
+                            });
+                    }
+                }
+            );
+    }
+</script>

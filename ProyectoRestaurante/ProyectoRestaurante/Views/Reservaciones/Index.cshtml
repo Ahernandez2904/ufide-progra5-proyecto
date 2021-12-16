@@ -8,55 +8,55 @@
 
 <br />
 <div class="container table-info">
-    <div class="row">
+    <div class="row" style="margin:15px; border:groove; ">
         <div class="col-8 bg-primary fw-bold">
-            <h2>Reservaciones</h2>
+            <h2 style="margin: 10px; color: lightgoldenrodyellow">Reservaciones</h2>
         </div>
         <div class="col-4 bg-primary fw-bold text-right">
-            <a asp-controller="Reservaciones" asp-action="Create"  class="btn btn-primary text-white">Crear</a>
+            <a asp-controller="Reservaciones" asp-action="Create" style="margin:15px; font-size:20px"  class="btn btn-outline-warning col-6 text-center">Crear Reservación</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-1 bg-primary fw-bold text-center">
-            Id
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-1 bg-primary fw-bold text-center">
+            ID
         </div>
-        <div class="col-2 bg-primary fw-bold text-center">
-            Cantidad de asientos
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-2 bg-primary fw-bold text-center">
+            Cantidad de Asientos
         </div>
-        <div class="col-4 bg-primary fw-bold text-center">
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-4 bg-primary fw-bold text-center">
             Fecha
         </div>
-        <div class="col-3 bg-primary fw-bold text-center">
-            Cédula del cliente
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-3 bg-primary fw-bold text-center">
+            Cédula Cliente
         </div>
-        <div class="col-2 bg-primary fw-bold text-center">
+        <div style="color:lightgoldenrodyellow; font-size:20px" class="col-2 bg-primary fw-bold text-center">
             Acción
         </div>
     </div>
     @foreach (Reservacion r in Model)
     {
-        <div class="row  text-center bg-dark" id="@r.Id">
-            <div class="col-1">
+        <div class ="row  text-center bg-dark" id="@r.Id">
+            <div style="padding:5px; font-size:18px" class="col-1">
                 @r.Id
             </div>
-            <div class="col-2">
+            <div style="padding:5px; font-size:18px" class="col-2">
                 @r.CantidadAsientos
             </div>
-            <div class="col-4">
+            <div style="padding:5px; font-size:18px" class="col-4">
                 @r.Fecha
             </div>
-            <div class="col-3">
+            <div style="padding:5px; font-size:18px" class="col-3">
                 @r.Cliente.CedulaCliente
             </div>
-            <div class="col-2">
-                <a id="editar" asp-controller="Reservaciones" asp-action="Upsert" asp-route-_id="@r.Id" class="btn btn-sm btn-success text-white">
+            <div style="padding-top:7px; padding-bottom:7px" class="col-2">
+                <a  id="editar" asp-controller="Reservaciones" asp-action="Upsert" asp-route-_id="@r.Id" class="btn btn-sm btn-primary text-white">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a id="borrar" onclick="Borrar('@r.Id');" class="btn btn-sm btn-danger text-white">
                     <i class="fas fa-trash-alt"></i>
                 </a>
-                <a id="factura" href="~/Factura" class="btn btn-lg btn-success text-white">
-                    <i class="fas fa-file-invoice-dollar"></i>
+                <a style="margin:2px 2px"id="factura" href="~/Factura" class="btn btn-sm btn-warning text-white">
+                    <i class="fas fa-file-invoice-dollar"></i> Crear Factura
                 </a>
             </div>
         </div>

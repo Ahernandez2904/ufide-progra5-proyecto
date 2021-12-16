@@ -5,38 +5,35 @@
     ViewData["Title"] = "Ingresar";
 }
 
-<div class="jumbotron">
-    <h1 class="display-4">Ingresar</h1>
-    <hr class="my-4">
-    <p>Ingresar con una cuenta</p>
-</div>
-
-<form method="post" action="/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)">
-    <div class="container table">
-        <div class="row">
-            <div class="col-md-5">
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label>Cédula</label>
-                    <input type="text" name="username" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" name="password" class="form-control" />
-                </div>
-                <br />
-                @if (!string.IsNullOrEmpty(error))
-                {
-                    <h2 class="alert-danger" style="padding:20px;">@error</h2>
+    <form  method="post" action="/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)">
+        <div class="container table">
+            <div style="margin:100px 150px 100px 150px" class="row justify-content-center text-center bg-light">
+                <div class="col-md-5">
+                   
+                    <h1 style="font-family:'Times New Roman', Times, serif; margin-top:25px">Iniciar Sesión</h1>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div style="font-size:25px; font-family:'Times New Roman', Times, serif" class="form-group ">
+                        <label>Cédula</label>
+                        <input type="text" name="username" class="form-control" />
+                    </div>
+                    <div style="font-size:25px; font-family:'Times New Roman', Times, serif" class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" class="form-control" />
+                    </div>
                     <br />
-                }
-                <br />
-                <button type="submit" class="btn btn-secondary" style="color:black !important;">Ingresar</button>
+                    @if (!string.IsNullOrEmpty(error))
+                    {
+                        <h2 class="alert-danger" style="padding:20px;">@error</h2>
+                        <br />
+                    }
+                    <br />
+                    <button type="submit" class="btn btn-outline-warning" style="color:black !important; margin-bottom:25px; font-size:25px; font-family:'Times New Roman', Times, serif" >Ingresar</button>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+
+
 
 @section Scripts
 {
