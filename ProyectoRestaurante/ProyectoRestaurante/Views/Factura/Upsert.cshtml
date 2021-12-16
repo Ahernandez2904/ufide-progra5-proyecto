@@ -1,0 +1,73 @@
+﻿@model FacturaViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+    @if (Model.Factura.IdFactura > 0)
+    {
+        <input type="hidden" asp-for="Factura.IdFactura" />
+    }
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                @if (Model.Factura.IdFactura > 0)
+                {<span>Editando</span> }
+                else
+                { <span>Creando</span>} Autor
+            </h2>
+        </div>
+    </div>
+
+
+    <div class="row form-group">
+        <div class="col-4"><label asp-for="Factura.IdReservacion"></label></div>
+        <div class="col-8">
+            @Html.DropDownListFor(s => s.Factura.IdReservacion, Model.Reservaciones, "- Seleccione la reservación", new { @class = "form-control" })
+            <span asp-validation-for="Factura.IdReservacion" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-4"><label asp-for="Factura.CedulaEmpleado"></label></div>
+        <div class="col-8">
+            @Html.DropDownListFor(s => s.Factura.CedulaEmpleado, Model.Empleados, "- Seleccione la reservación", new { @class = "form-control" })
+            <span asp-validation-for="Factura.CedulaEmpleado" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button asp-controller="Factura" asp-action="Index" class="btn btn-secondary text-white">Cancelar</button>
+            <button type="submit" class="btn btn-primary text-white">
+                @if (Model.Factura.IdFactura > 0)
+                {<span>Actualizar</span> }
+                else
+                { <span>Crear</span>}
+            </button>
+        </div>
+    </div>
+</div>
+</form>
+
+<br />
+<br />
+<br />
+<br />
+
+<div style=" font-size:25px; align-content:center; margin:15%" class="d-flex justify-content-around text-wrap d-flex align-items-center ">
+    <a href="~/Factura">Volver al Menu de Reservacion</a>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

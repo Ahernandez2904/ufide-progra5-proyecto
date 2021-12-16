@@ -1,0 +1,44 @@
+﻿@model List<Factura>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-6 text-center"><h2>Facturación</h2></div>
+        <a asp-controller="Factura" asp-action="Upsert" asp-route-id="0" class="btn btn-outline-danger col-6 text-center"><i class="far fa-plus-square"></i> Crear Factura</a>
+    </div>
+    <br />
+    <div style="padding: 1%; background-color: #4B69AD; color: white; border: groove; border-radius: 50px; position: relative " class="row d-flex justify-content-around text-wrap d-flex align-items-center">
+        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> ID</div>
+        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Reservación</div>
+        <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Cedula Empleado</div>
+       <!-- <div class="col-3" align="center"><i class="fas fa-file-medical"></i> Cantidad de Asientos</div> -->
+        <!--<div class="col-3" align="center"><i class="fas fa-users"></i> Empleado</div>-->
+        <div class="col-3" align="center">
+        </div>
+    </div>
+
+    @foreach (Factura factura in Model)
+    {
+<div style="padding: 1%; background-color: #EDDB40; color: black; border: groove; border-radius: 50px; position: relative " class="row d-flex justify-content-around text-wrap d-flex align-items-center" id="@factura.IdFactura">
+    <div class="col-3" align="center">@factura.IdFactura</div>
+    <div class="col-3" align="center">@factura.Reservacion.Id</div>
+    <div class="col-3" align="center">@factura.Empleado.CedulaEmpleado</div>
+    <div class="col-3" align="center">
+        <!--<a id="editar" asp-controller="Blogs" asp-action="Upsert" asp-route-id=".ApodoId" class="btn btn-sm btn-success text-white"><i class="fas fa-edit"></i></a>-->
+        <!--<a id="borrar" class="btn btn-sm btn-danger text-white" onclick="Borrar('');"><i class="fas fa-trash-alt"></i></a>-->
+    </div>
+
+    <div class="col-2"> 
+        <a id="factura" href="~/Factura_Platillo" class="btn btn-lg btn-success text-white">
+            <i class="fas fa-file-invoice-dollar"></i>
+        </a>
+    </div>
+</div>
+    }
+
+</div>
