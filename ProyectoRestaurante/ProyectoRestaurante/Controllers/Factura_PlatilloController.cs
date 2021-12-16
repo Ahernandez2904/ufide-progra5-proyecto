@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoRestaurante.Models;
 using System;
@@ -18,6 +19,7 @@ namespace ProyectoRestaurante.Controllers
 
         ApplicationDbContext Database;
 
+        [Authorize]
         public IActionResult Index()
         {
 
@@ -35,6 +37,7 @@ namespace ProyectoRestaurante.Controllers
             return View(factura_Platillos);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Upsert(int id)
         {
@@ -63,6 +66,7 @@ namespace ProyectoRestaurante.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Upsert(FacturaPlatilloViewModel fp)
         {
@@ -106,4 +110,6 @@ namespace ProyectoRestaurante.Controllers
             return RedirectToAction(nameof(Index));
         }
     }
+
+    //Para cualquier nueva ruta agreguele [Authorize] al principio
 }
