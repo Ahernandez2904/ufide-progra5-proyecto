@@ -10,7 +10,7 @@ namespace ProyectoRestaurante.Models
     public class Factura
     {
         [Key]
-        public int Id { get; set; }
+        public int IdFactura { get; set; }
 
         [Required]
         [Display(Name = "Reservacion")]
