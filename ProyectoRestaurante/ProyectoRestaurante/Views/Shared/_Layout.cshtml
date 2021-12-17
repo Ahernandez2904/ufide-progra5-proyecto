@@ -13,7 +13,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Restaurante</a>
+                <img src="~/images/logotipo.jpg" class="image" width="3%" style="border-radius:50px" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> Restaurante</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -23,7 +24,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a  class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a>
